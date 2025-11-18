@@ -1,11 +1,4 @@
-import { Route, Routes } from "react-router";
-import { Button } from "./components/ui/button";
-
+import RootRoute from "./root-route";
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<div>home</div>} />
-      <Route path="/" element={<div>home</div>} />
-    </Routes>
-  );
+  return <RootRoute />;
 }
