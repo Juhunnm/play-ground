@@ -61,7 +61,7 @@ export default function SignUpPage() {
         </Button>
       </div>
       <div className="flex flex-col gap-2">
-        <Link className="text-muted-foreground" to={"/sign-in"}>
+        <Link className="text-muted-foreground hover:underline" to={"/sign-in"}>
           이미 계정이 있다면? 로그인
         </Link>
       </div>
