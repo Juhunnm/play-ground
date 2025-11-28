@@ -5,6 +5,7 @@ import { generateErrorMessage } from "@/lib/error";
 import { useState } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
+import { useSignInWithOauth } from "@/hooks/mutation/use-sign-in-with-oauth";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -25,15 +26,31 @@ export default function SignInPage() {
         });
       },
     });
+  const { mutate: signInWithOAuth, isPending: isSignInWithOauthPeding } =
+    useSignInWithOauth({
+      onError: (error) => {
+        const message = generateErrorMessage(error);
+        toast.error(message, {
+          position: "top-center",
+        });
+      },
+    });
   const handleSignInWithPasswordClick = () => {
     if (email.trim() === "" || password.trim() === "") return;
     signInWithPassword({ email, password });
   };
+
+  const handleSignInWithKakao = () => {
+    signInWithOAuth("kakao");
+  };
+
+  const isPending = isSignInWithPasswordPending || isSignInWithOauthPeding;
   return (
     <div className="flex flex-col gap-5">
       <div className="font-blod text-center text-xl">로그인</div>
       <div className="flex flex-col gap-2">
         <Input
+          disabled={isPending}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="py-6"
@@ -41,6 +58,7 @@ export default function SignInPage() {
           placeholder="example@abc.com"
         />
         <Input
+          disabled={isPending}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="py-6"
@@ -48,9 +66,20 @@ export default function SignInPage() {
           placeholder="password"
         />
       </div>
-      <div>
-        <Button onClick={handleSignInWithPasswordClick} className="w-full">
+      <div className="flex flex-col gap-2">
+        <Button
+          disabled={isPending}
+          onClick={handleSignInWithPasswordClick}
+          className="w-full cursor-pointer"
+        >
           로그인
+        </Button>
+        <Button
+          disabled={isPending}
+          onClick={handleSignInWithKakao}
+          className="text-#191919 w-full cursor-pointer border border-transparent bg-[#FEE500] hover:bg-[#F5D700] hover:text-[#191919] active:bg-[#E5C600]"
+        >
+          카카오로 시작하기
         </Button>
       </div>
       <div className="flex flex-col gap-2">
