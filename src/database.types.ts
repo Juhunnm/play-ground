@@ -50,6 +50,30 @@ export type Database = {
         }
         Relationships: []
       }
+      profile: {
+        Row: {
+          "avator-url": string | null
+          bio: string
+          created_at: string
+          id: string
+          nickname: string
+        }
+        Insert: {
+          "avator-url"?: string | null
+          bio?: string
+          created_at?: string
+          id?: string
+          nickname?: string
+        }
+        Update: {
+          "avator-url"?: string | null
+          bio?: string
+          created_at?: string
+          id?: string
+          nickname?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

@@ -10,9 +10,9 @@ export default function GlobalLayout() {
             <img
               className="h-10"
               src={logo}
-              alt="ask duck의 로고, 오리를 형상화한 모양"
+              alt="open-circle의 로고 사람들이 원을 만드는 모양"
             />
-            <div className="font-bold">ask your duck</div>
+            <div className="font-bold">open circle</div>
           </Link>
           <div className="flex items-center gap-5">
             <div className="hover:bg-muted cursor-pointer rounded-full">
